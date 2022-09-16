@@ -1,4 +1,5 @@
 var app = angular.module("MyApp", []);
+// const hellodata = require('./data.json');
 
 app.controller("MyController", function ($scope, $http) {
   $scope.IsVisible = false;
@@ -277,16 +278,24 @@ app.controller("MyController", function ($scope, $http) {
       },
     ],
   };
+
   activate();
-  function activate(){
-      console.log("activate called")
-      $http.get('data.json').then(function(response) {
-        //   console.log("response = ",response);
-          $scope.data = response.data;
-       });
-      //  $http.get('data.json').success(function (data){
-      //     $scope.data = data;
-      // });
+  function activate() {
+    console.log("activate called");
+
+    var onSuccess = function (data, status, headers, config) {
+        console.log("data = ",data);
+        $scope.mainData= data.data;
+    };
+
+    var onError = function (data, status, headers, config) {
+        $scope.error = status;
+    }
+
+    var promise = $http.get("localhost:3000/data");
+        
+    promise.success(onSuccess);
+    promise.error(onError);
   }
 
   function compareAudience(a, b) {
@@ -294,5 +303,4 @@ app.controller("MyController", function ($scope, $http) {
   }
   $scope.data = $scope.mainData.data.sort(compareAudience);
   console.log("$scope.data = ", $scope.data);
-
 });
