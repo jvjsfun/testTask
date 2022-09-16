@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"
+    ></script>
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script src="main.js" type="text/javascript"></script>
+    <style>
+      .image_placeholder {
+        /* background-image: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-16.png); */
+        fill:"#868e96"
+      }
+    </style>
+    <div ng-app="MyApp" ng-controller="MyController">
+      <hr />
+      <div class="container">
+        <div class="row">
+          <div ng-repeat="m in data">
+            <div
+              class="clearfix"
+              ng-if="$index % 4 == 0"
+              style="margin-top: 10px; margin-bottom: 10px"
+            ></div>
+            <div class="col-sm-2">
+              <!-- <img src="{{m.social_media_pages.picture}}" alt="..." class="img-thumbnail"> -->
+              <a href="#" data-toggle="{{tooltip+$index}}" title="Some tooltip text!">
+                  <img
+                    ng-src="{{m.social_media_pages.picture}}"
+                    class="img-thumbnail rounded"
+                    alt="..."
+                    class="image_placeholder"
+                    src="sample.jpg"
+                    onerror="this.src='sample.jpg'"
+                    style="width:70px;height:70px;"
+                  />
+              </a>
+              <div class="tooltip bs-tooltip-top" role="{{tooltip+$index}}">
+                <div class="arrow"></div>
+                <div class="tooltip-inner">{{m.source_items.id}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
