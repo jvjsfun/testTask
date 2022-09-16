@@ -8,10 +8,8 @@ app.controller("MyController", function ($scope, $http) {
 
   activate();
   function activate() {
-    console.log("activate called");
 
     var onSuccess = function (data, status, headers, config) {
-        console.log("data from API = ",data);
         $scope.mainData= data.data;
         sortData();
     };
@@ -31,7 +29,6 @@ app.controller("MyController", function ($scope, $http) {
   }
   function sortData(){
     $scope.data = $scope.mainData.sort(compareAudience);
-    console.log("$scope.data = ", $scope.data);
   }
 
 });
